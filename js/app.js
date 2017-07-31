@@ -1,13 +1,9 @@
-var Cat = function () {
-  this.clickCount = ko.observable(0);
-  this.name = ko.observable('Tabby');
-  this.imgSrc = ko.observable('img/cat-clicker-1-small.jpg');
-  this.imgAttribution = ko.observable('https://www.flicker.com');
-  this.nicknames = ko.observableArray([
-    'Mittens',
-    'Bruiser',
-    'Gadnuk Breaker of Worlds'
-  ]);
+var Cat = function (data) {
+  this.clickCount = ko.observable(data.clickCount);
+  this.name = ko.observable(data.name);
+  this.imgSrc = ko.observable(data.imgSrc);
+  this.imgAttribution = ko.observable(data.imgAttribution);
+  this.nicknames = ko.observableArray(data.nicknames);
 
   this.catLevel = ko.computed(function(){
     var catLevel;
@@ -25,7 +21,19 @@ var Cat = function () {
 var ViewModel = function () {
   var self = this;
 
-  this.currentCat = ko.observable(new Cat());
+  this.currentCat = ko.observable(new Cat(
+    {
+      clickCount: 0,
+      name: 'Tabby',
+      imgSrc: 'img/cat-clicker-1-small.jpg',
+      imgAttribution: 'https://www.flicker.com',
+      nicknames: [
+        'Mittens',
+        'Bruiser',
+        'Gadnuk Breaker of Worlds'
+      ]
+    }
+  ));
 
   this.incrementCounter = function() {
     self.currentCat().clickCount(self.currentCat().clickCount() + 1);
