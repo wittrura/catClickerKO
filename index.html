@@ -6,6 +6,14 @@
     <title>Cat Clicker with Knockout</title>
   </head>
   <body>
+    <!-- cat list -->
+    <div class="">
+        <ul data-bind="foreach: catList">
+          <li data-bind="text: name, click: $parent.makeActiveCat"></li>
+        </ul>
+    </div>
+
+    <!-- cat details -->
     <div data-bind="with: currentCat">
       <h2 data-bind="text: name"></h2>
       <h3 data-bind="text: catLevel"></h3>
