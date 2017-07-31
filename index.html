@@ -7,9 +7,9 @@
   </head>
   <body>
     <!-- cat list -->
-    <div class="">
+    <div>
         <ul data-bind="foreach: catList">
-          <li data-bind="text: name, click: $parent.makeActiveCat"></li>
+          <li data-bind="text: name, click: $parent.setActiveCat"></li>
         </ul>
     </div>
 

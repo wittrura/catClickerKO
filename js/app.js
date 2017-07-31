@@ -78,7 +78,7 @@ var ViewModel = function () {
     self.currentCat().clickCount(self.currentCat().clickCount() + 1);
   };
 
-  this.makeActiveCat = function(cat) {
+  this.setActiveCat = function(cat) {
     self.currentCat(cat);
   }
 }
