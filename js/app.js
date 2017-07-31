@@ -1,23 +1,34 @@
-var ViewModel = function () {
+var Cat = function () {
   this.clickCount = ko.observable(0);
   this.name = ko.observable('Tabby');
   this.imgSrc = ko.observable('img/cat-clicker-1-small.jpg');
   this.imgAttribution = ko.observable('https://www.flicker.com');
-
-  this.incrementCounter = function() {
-    this.clickCount(this.clickCount() + 1);
-  };
-
+  this.nicknames = ko.observableArray([
+    'Mittens',
+    'Bruiser',
+    'Gadnuk Breaker of Worlds'
+  ]);
 
   this.catLevel = ko.computed(function(){
+    var catLevel;
     if (this.clickCount() < 10) {
-      return 'Newborn';
+      catLevel = 'Newborn';
     } else if (this.clickCount() < 20) {
-      return 'Infant';
+      catLevel = 'Infant';
     } else {
-      return 'Kitty';
+      catLevel = 'Kitty';
     }
+    return catLevel;
   }, this);
+}
+
+var ViewModel = function () {
+
+  this.currentCat = ko.observable(new Cat());
+
+  this.incrementCounter = function() {
+    this.currentCat().clickCount(this.currentCat().clickCount() + 1);
+  };
 }
 
 ko.applyBindings(new ViewModel());
